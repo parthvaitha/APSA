@@ -1,0 +1,25 @@
+steph <- function(a, b) {
+  a_Path<-subset(APSA, APSA$Promoted==a)
+  print(cat(a, "is the career path"))
+  print(cat(b, "is the race"))
+  #Next, I will create subsets for POC and white folks to compare means.
+  #White
+  a_Path.White<-subset(a_Path, a_Path$Perceived.Race.Ethnicity==8)
+  print(cat("Average years to Promotion for white guy is ", mean(a_Path.White$Years.to.Promotion, na.rm = TRUE) ))
+  #POC
+  a_Path.b<-subset(a_Path, a_Path$Perceived.Race.Ethnicity==b)
+  summary(a_Path.b$Years.to.Promotion)
+  print(cat("Average years to Promotion for POC guy is ", mean(a_Path.b$Years.to.Promotion, na.rm = TRUE) ))
+  #N
+  print(cat(NROW(a_Path.b), "is the number of POCs in this path"))
+  print(cat(NROW(a_Path.White), "is the number of Whites in this path"))
+  #T-test
+  if (NROW(a_Path.White) > 1) {
+    if (NROW(a_Path.b) > 2) {
+      t.test(a_Path.White$Years.to.Promotion, a_Path.b$Years.to.Promotion)}
+      else {print("Not enough POC values boi")
+        
+    }}
+    else {print("not enough white values boi")
+  }
+}
